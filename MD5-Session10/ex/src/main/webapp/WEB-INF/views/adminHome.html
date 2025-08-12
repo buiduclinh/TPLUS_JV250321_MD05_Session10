@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>WELCOME ADMIN</h1>
+<h3>Xin chào: <span th:text="${session.customer.fullName}"></span></h3>
+<a th:href="@{/CustomerController/customersView}">Customers View</a>
+</body>
+</html>

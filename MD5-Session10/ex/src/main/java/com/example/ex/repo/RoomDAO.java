@@ -1,0 +1,17 @@
+package com.example.ex.repo;
+
+import com.example.ex.model.Room;
+
+import java.util.List;
+
+public interface RoomDAO {
+    List<Room> getRooms();
+
+    Room getRoom(int id);
+
+    boolean addRoom(Room room);
+
+    boolean deleteRoom(int id);
+
+    boolean updateRoom(Room room);
+}

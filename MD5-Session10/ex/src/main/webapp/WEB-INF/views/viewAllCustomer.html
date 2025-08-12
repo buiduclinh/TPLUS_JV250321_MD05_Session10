@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Customers</h1>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>FULL NAME</td>
+        <td>PHONE NUMBER</td>
+        <td>EMAIL</td>
+        <td>PASSWORD</td>
+        <td>ADDRESS</td>
+        <td>ROLE</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer:${customers}">
+        <td th:text="${customer.id}"></td>
+        <td th:text="${customer.fullName}"></td>
+        <td th:text="${customer.phoneNumber}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.password}"></td>
+        <td th:text="${customer.address}"></td>
+        <td th:text="${customer.role}"></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/CustomerController/admin}">back</a>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>REGISTER</h1>
+<form th:action="@{/AuthController/register}" th:object="${customer}" method="post">
+
+    <label for="customerName">Full Name:</label>
+    <input id="customerName" type="text" th:field="*{fullName}">
+    <span th:if="${#fields.hasErrors('fullName')}"
+          th:errors="*{fullName}" style="color: red"
+    ></span>
+    <br>
+
+    <label for="customerPhone">Phone Number:</label>
+    <input id="customerPhone" type="number" th:field="*{phoneNumber}">
+    <span th:if="${#fields.hasErrors('phoneNumber')}"
+          th:errors="*{phoneNumber}" style="color: red"
+    ></span>
+    <br>
+
+    <div style="color:red" th:if="${errorPhone}" th:text="${errorPhone}"></div>
+    <br>
+
+    <label for="customerEmail">Email:</label>
+    <input id="customerEmail" type="email" th:field="*{email}">
+    <span th:if="${#fields.hasErrors('email')}"
+          th:errors="*{email}" style="color: red"
+    ></span>
+    <br>
+
+    <div style="color:red" th:if="${errorEmail}" th:text="${errorEmail}"></div>
+    <br>
+
+    <label for="customerPassword">Password:</label>
+    <input id="customerPassword" type="password" th:field="*{password}">
+    <span th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}" style="color: red"
+    ></span>
+    <br>
+
+    <label for="customerAddress">Address:</label>
+    <textarea id="customerAddress" th:field="*{address}" style="resize: none; width: 300px; height: 100px;"></textarea>
+    <span th:if="${#fields.hasErrors('address')}"
+          th:errors="*{address}" style="color: red"></span>
+    <br>
+
+    <input type="submit" name="" id=""><br>
+    <a th:href="@{/AuthController/login}">LOGIN</a>
+</form>
+</body>
+</html>
