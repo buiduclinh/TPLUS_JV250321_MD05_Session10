@@ -108,6 +108,7 @@ BEGIN
     SELECT * FROM room;
 END $$
 DELIMITER ;
+CALL view_all_rooms;
 
 -- add room
 DELIMITER $$

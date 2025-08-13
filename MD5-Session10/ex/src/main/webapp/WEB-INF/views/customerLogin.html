@@ -14,7 +14,7 @@
     <input id="customerPassword" type="password" th:field="*{password}">
     <div style="color:red" th:if="${error}" th:text="${error}"></div>
     <br>
-    <input type="submit" name="" id=""><br>
+    <input type="submit" value="Sign In">
     <a th:href="@{/AuthController/register}">REGISTER</a>
 </form>
 </body>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>VIEW ALL ROOMS</h1>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>ROOM NAME</td>
+        <td>ROOM TYPE</td>
+        <td>STATUS</td>
+        <td>IS DELETE</td>
+        <td>PRICE</td>
+        <td>IMAGE</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room :${rooms}">
+        <td th:text="${room.id}"></td>
+        <td th:text="${room.roomName}"></td>
+        <td th:text="${room.roomType}"></td>
+        <td th:text="${room.status}"></td>
+        <td th:text="${room.delete}"></td>
+        <td th:text="${room.price}"></td>
+        <td>
+            <img th:src="${room.image}" alt="Room image" width="100">
+        </td>
+        <td>
+            <a th:href="@{/RoomController/editRoom/{id}(id=${room.id})}" class="btn btn-warning">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/RoomController/deleteRoom/{id}(id=${room.id})}"
+               class="btn btn-danger"
+            >
+                Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/RoomController/addNewRoom}">ADD NEW ROOM</a>
+<a th:href="@{/RoomController/viewRooms}">back</a>
+</body>
+</html>

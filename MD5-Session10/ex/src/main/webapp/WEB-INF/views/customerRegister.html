@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -48,7 +48,7 @@
           th:errors="*{address}" style="color: red"></span>
     <br>
 
-    <input type="submit" name="" id=""><br>
+    <input type="submit" value="Sign Up">
     <a th:href="@{/AuthController/login}">LOGIN</a>
 </form>
 </body>

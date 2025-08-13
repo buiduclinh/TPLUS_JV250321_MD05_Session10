@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>ADD NEW ROOM</h1>
+<form th:action="@{/RoomController/saveRoom}" th:object="${room}" method="post" enctype="multipart/form-data">
+    <label for="2">ROOM NAME:</label>
+    <input type="text" id="2" th:field="*{roomName}">
+    <span th:if="${#fields.hasErrors('roomName')}"
+          th:errors="*{roomName}" style="color: red"></span>
+    <br>
+    <label for="3">ROOM TYPE:</label>
+    <select id="3" th:field="*{roomType}">
+        <option value="SINGLE">SINGLE</option>
+        <option value="DOUBLE">DOUBLE</option>
+        <option value="SUIT">SUIT</option>
+    </select>
+    <label for="7">PRICE:</label>
+    <input type="number" id="7" th:field="*{price}">
+    <span th:if="${#fields.hasErrors('price')}"
+          th:errors="*{price}" style="color: red"></span>
+    <br>
+    <label for="8">IMAGE:</label>
+    <input id="8" type="file" th:field="*{imageFile}" accept="image/*"><br>
+
+    <br>
+    <input type="submit" value="Save">
+</form>
+<a th:href="@{/RoomController/viewRooms}">back</a>
+</body>
+</html>
