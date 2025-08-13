@@ -12,18 +12,18 @@ import lombok.NoArgsConstructor;
 @Data
 public class Customer {
     private int id;
-    @NotBlank(message = "Can not black this field!")
+    @NotBlank(message = "Can not blank this field!")
     private String fullName;
-    @NotBlank(message = "Can not black this field!")
+    @NotBlank(message = "Can not blank this field!")
     @Size(max = 11, message = "Can not allow more than 11 words")
     private String phoneNumber;
-    @NotBlank(message = "Can not black this field!")
+    @NotBlank(message = "Can not blank this field!")
     @Email(message = "Email is not available!")
     private String email;
-    @NotBlank(message = "Can not black this field!")
+    @NotBlank(message = "Can not blank this field!")
     @Size(min = 6, message = "Can not allow lease than 11 words")
     private String password;
-    @NotBlank(message = "Can not black this field!")
+    @NotBlank(message = "Can not blank this field!")
     private String address;
     Role role;
 

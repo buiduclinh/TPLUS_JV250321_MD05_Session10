@@ -78,13 +78,15 @@ public class CustomerController {
     @PostMapping("/bookRoom/{id}")
     public String showBookRoom(@Valid @ModelAttribute("customer") Customer customer,
                                BindingResult bindingResult,
+                               HttpSession session,
                                @PathVariable("id") int id,
                                Model model
     ) {
         if (bindingResult.hasErrors()) {
             return "bookRoom";
         }
-        model.addAttribute("id", id);
+        model.addAttribute("customer", customer);
+        session.setAttribute("customer", customer);
         customerService.updateCustomer(customer);
         return "redirect:/CustomerController/booked/" + id;
     }
