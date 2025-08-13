@@ -14,4 +14,8 @@ public interface RoomDAO {
     boolean deleteRoom(int id);
 
     boolean updateRoom(Room room);
+
+    List<Room> getRoomsCustomerView();
+
+    boolean bookRoom(int id);
 }

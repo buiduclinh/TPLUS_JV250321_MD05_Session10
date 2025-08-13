@@ -27,4 +27,5 @@ public class Room {
     private String image;
 
     private MultipartFile imageFile;
+
 }

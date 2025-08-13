@@ -86,6 +86,10 @@ public class CustomerDAOImp implements CustomerDAO {
                 customer.setEmail(rs.getString("email"));
                 customer.setPassword(rs.getString("password"));
                 customer.setRole(Customer.Role.valueOf(rs.getString("role")));
+                customer.setFullName(rs.getString("full_name"));
+                customer.setId(rs.getInt("id"));
+                customer.setPhoneNumber(rs.getString("phone_number"));
+                customer.setAddress(rs.getString("address"));
                 return customer;
             }
         } catch (SQLException e) {
@@ -104,6 +108,25 @@ public class CustomerDAOImp implements CustomerDAO {
             callableStatement.setString(3, customer.getEmail());
             callableStatement.setString(4, customer.getPassword());
             callableStatement.setString(5, customer.getAddress());
+            int row = callableStatement.executeUpdate();
+            if (row > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateCustomer(Customer customer) {
+        String sql = "{CALL update_customer(?,?,?,?)}";
+        try (Connection connection = DBConnection.getInstance().getConnection();
+             CallableStatement callableStatement = connection.prepareCall(sql);) {
+            callableStatement.setInt(1, customer.getId());
+            callableStatement.setString(2, customer.getFullName());
+            callableStatement.setString(3, customer.getPhoneNumber());
+            callableStatement.setString(4, customer.getAddress());
             int row = callableStatement.executeUpdate();
             if (row > 0) {
                 return true;

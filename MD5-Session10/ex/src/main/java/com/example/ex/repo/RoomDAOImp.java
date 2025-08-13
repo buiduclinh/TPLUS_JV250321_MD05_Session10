@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class RoomDAOImp implements RoomDAO {
     @Override
@@ -104,9 +105,49 @@ public class RoomDAOImp implements RoomDAO {
             callableStatement.setString(2, room.getRoomName());
             callableStatement.setString(3, room.getRoomType());
             callableStatement.setString(4, String.valueOf(room.getStatus()));
-            callableStatement.setBoolean(5,room.isDelete());
+            callableStatement.setBoolean(5, room.isDelete());
             callableStatement.setDouble(6, room.getPrice());
             callableStatement.setString(7, room.getImage());
+            int row = callableStatement.executeUpdate();
+            if (row > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public List<Room> getRoomsCustomerView() {
+        List<Room> rooms = new ArrayList<>();
+        String sql = "{CALL get_room_by_where_is_delete_false()}";
+        try (Connection connection = DBConnection.getInstance().getConnection();
+             CallableStatement callableStatement = connection.prepareCall(sql);) {
+            ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()) {
+                Room room = new Room();
+                room.setId(rs.getInt("id"));
+                room.setRoomName(rs.getString("room_name"));
+                room.setRoomType(rs.getString("room_type"));
+                room.setStatus(Room.Role.valueOf(rs.getString("status")));
+                room.setDelete(rs.getBoolean("is_delete"));
+                room.setPrice(rs.getDouble("price"));
+                room.setImage(rs.getString("image"));
+                rooms.add(room);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rooms;
+    }
+
+    @Override
+    public boolean bookRoom(int id) {
+        String sql = "{CALL booked_room(?)}";
+        try (Connection connection = DBConnection.getInstance().getConnection();
+             CallableStatement callableStatement = connection.prepareCall(sql);) {
+            callableStatement.setInt(1, id);
             int row = callableStatement.executeUpdate();
             if (row > 0) {
                 return true;

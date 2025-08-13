@@ -172,3 +172,43 @@ BEGIN
     WHERE id = in_id;
 END $$
 DELIMITER ;
+
+-- get room where is_delete = false
+DELIMITER $$
+CREATE PROCEDURE get_room_by_where_is_delete_false(
+)
+BEGIN
+    SELECT *
+    FROM room
+    WHERE is_delete = 0;
+END $$
+DELIMITER ;
+CALL get_room_by_where_is_delete_false;
+-- booked room
+DELIMITER $$
+CREATE PROCEDURE booked_room(
+    IN in_room_id INT
+)
+BEGIN
+    UPDATE room
+    SET status = 'PLACED'
+    WHERE id = in_room_id;
+END $$
+DELIMITER ;
+
+-- customer update
+DELIMITER $$
+CREATE PROCEDURE update_customer(
+    IN in_id INT,
+    IN in_full_name VARCHAR(100),
+    IN in_phone_number VARCHAR(20),
+    IN in_address VARCHAR(100)
+)
+BEGIN
+    UPDATE customer
+    SET full_name    = in_full_name,
+        phone_number = in_phone_number,
+        address      = in_address
+    WHERE id = in_id;
+END $$
+DELIMITER ;

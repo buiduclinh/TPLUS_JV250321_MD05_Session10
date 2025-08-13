@@ -14,4 +14,6 @@ public interface CustomerDAO {
     Customer login(String email, String password);
 
     boolean addCustomer(Customer customer);
+
+    boolean updateCustomer(Customer customer);
 }

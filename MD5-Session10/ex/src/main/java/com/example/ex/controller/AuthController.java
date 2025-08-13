@@ -32,14 +32,18 @@ public class AuthController {
     }
 
     @PostMapping(value = "/login")
-    public String login(@ModelAttribute("customer") Customer customer, Model model, @RequestParam("email") String email, @RequestParam("password") String password, HttpSession session) {
-        model.addAttribute("customer", customer);
+    public String login(@ModelAttribute("customer") Customer customer,
+                        Model model,
+                        @RequestParam("email") String email,
+                        @RequestParam("password") String password,
+                        HttpSession session) {
         customer = customerService.login(email, password);
+        model.addAttribute("customer", customer);
         if (customer != null) {
             session.setAttribute("customer", customer);
             return switch (customer.getRole()) {
                 case ADMIN -> "adminHome";
-                case CUSTOMER -> "customerHome";
+                case CUSTOMER -> "redirect:/CustomerController/viewCustomerRooms";
             };
         } else {
             model.addAttribute("error", "Invalid Email or Password");

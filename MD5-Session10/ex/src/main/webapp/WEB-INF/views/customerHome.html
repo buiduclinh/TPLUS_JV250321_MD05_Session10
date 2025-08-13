@@ -1,11 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h1>WELCOME</h1>
-<h3>Xin chào: <span th:text="${session.customer.fullName}"></span></h3>
+<h3>Xin chào người dùng: <span th:text="${session.customer.fullName}"></span></h3>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>ROOM NAME</td>
+        <td>ROOM TYPE</td>
+        <td>STATUS</td>
+        <td>PRICE</td>
+        <td>IMAGE</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room :${rooms}">
+        <td th:text="${room.id}"></td>
+        <td th:text="${room.roomName}"></td>
+        <td th:text="${room.roomType}"></td>
+        <td th:text="${room.status}"></td>
+        <td th:text="${room.price}"></td>
+        <td>
+            <img th:src="${room.image}" alt="Room image" width="100">
+        </td>
+        <td th:if="${room.status.name() =='EMPTY'}">
+            <a th:href="@{/CustomerController/bookRoom/{id}(id=${room.id})}">BOOK ROOM</a>
+        </td>
+        <td th:if="${room.status.name() !='EMPTY'}">
+            <span style="color: gray">NOT AVAILABLE</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/AuthController/login}">back</a>
 </body>
 </html>

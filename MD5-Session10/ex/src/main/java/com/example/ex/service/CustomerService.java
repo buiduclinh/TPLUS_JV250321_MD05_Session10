@@ -36,4 +36,9 @@ public class CustomerService implements CustomerIS {
     public boolean addCustomer(Customer customer) {
         return customerDAO.addCustomer(customer);
     }
+
+    @Override
+    public boolean updateCustomer(Customer customer) {
+        return customerDAO.updateCustomer(customer);
+    }
 }

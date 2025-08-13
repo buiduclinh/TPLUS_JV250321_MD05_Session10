@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>BOOK ROOM</h1>
+<form th:action="@{/CustomerController/bookRoom/{id}(id=${id})}"
+      th:object="${customer}" method="post">
+
+    <label for="1">CUSTOMER ID:</label>
+    <input type="text" id="1" th:field="*{id}" readonly>
+
+    <label for="2">FULL NAME:</label>
+    <input type="text" id="2" th:field="*{fullName}" readonly>
+
+    <span th:if="${#fields.hasErrors('fullName')}"
+          th:errors="*{fullName}" style="color: red"></span>
+    <br>
+
+    <label for="3">PHONE:</label>
+    <input type="text" id="3" th:field="*{phoneNumber}" readonly>
+
+    <span th:if="${#fields.hasErrors('phoneNumber')}"
+          th:errors="*{phoneNumber}" style="color: red"></span>
+    <br>
+    <label for="4">ADDRESS:</label>
+    <input type="text" id="4" th:field="*{address}" readonly>
+
+    <span th:if="${#fields.hasErrors('address')}"
+          th:errors="*{address}" style="color: red"></span>
+    <br>
+    <input type="submit" value="submit">
+
+</form>
+</body>
+</html>

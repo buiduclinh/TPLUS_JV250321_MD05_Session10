@@ -36,4 +36,14 @@ public class RoomServiceImp implements RoomService {
     public boolean updateRoom(Room room) {
         return roomDAO.updateRoom(room);
     }
+
+    @Override
+    public List<Room> getRoomsCustomerView() {
+        return roomDAO.getRoomsCustomerView();
+    }
+
+    @Override
+    public boolean bookRoom(int id) {
+        return roomDAO.bookRoom(id);
+    }
 }
